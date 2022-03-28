@@ -20,7 +20,7 @@ public class StudentService {
 	}
 
 	public void registerNewStudent(Student student) {
-		if (studentRepository.findStudentByEmail(student.getEmail()).isEmpty())
+		if (!studentRepository.findStudentByEmail(student.getEmail()).isPresent())
 			studentRepository.save(student);
 		else
 			throw new IllegalArgumentException("Email already exists");
